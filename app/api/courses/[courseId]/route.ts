@@ -2,8 +2,6 @@ import Mux from "@mux/mux-node";
 import { db } from "@/lib/db";
 import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
-import { isTeacher } from "@/lib/teacher";
-
 const { video } = new Mux({
   tokenId: process.env.MUX_TOKEN_ID,
   tokenSecret: process.env.MUX_TOKEN_SECRET,
@@ -18,7 +16,7 @@ export async function DELETE(
     const { data, error } = await supabase.auth.getUser();
     const userId = data.user?.id;
 
-    if (!userId || !isTeacher(userId)) {
+    if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 

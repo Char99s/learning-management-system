@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
 import { db } from "@/lib/db";
-import { isTeacher } from "@/lib/teacher";
 
 export async function POST(req: Request) {
   try {
@@ -10,7 +9,7 @@ export async function POST(req: Request) {
     const { title } = await req.json();
     const userId = data.user?.id;
 
-    if (!userId || !isTeacher(userId)) {
+    if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 

@@ -5,11 +5,8 @@ import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { SearchInput } from "./search-input";
-import { isTeacher } from "@/lib/teacher";
-
 export const NavbarRoutes = async () => {
   const pathname = usePathname();
-  const router = useRouter();
 
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isPlayerPage = pathname?.includes("/courses");
@@ -30,13 +27,13 @@ export const NavbarRoutes = async () => {
               Exit
             </Button>
           </Link>
-        ) : isTeacher("c71e83a7-85c1-4957-b6c5-88dee255cbab") ? (
+        ) : (
           <Link href="/teacher/courses">
             <Button size="sm" variant="ghost">
               Teacher Mode
             </Button>
           </Link>
-        ) : null}
+        )}
         <div>
           <form action="/signout" method="post">
             <Button size="sm" variant="destructive" type="submit">

@@ -1,4 +1,3 @@
-import { isTeacher } from "@/lib/teacher";
 import { createClient } from "@/utils/supabase/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
@@ -9,8 +8,7 @@ const handleAuth = async () => {
   const supabase = createClient();
   const { data, error } = await supabase.auth.getUser();
   const userId = data.user?.id;
-  const isAuthorized = isTeacher(userId);
-  if (!userId || !isAuthorized) throw new Error("Unauthorized");
+  if (!userId) throw new Error("Unauthorized");
   return { userId };
 };
 
