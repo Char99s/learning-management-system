@@ -19,6 +19,9 @@ module.exports = withUt({
       },
     },
     extend: {
+      backgroundImage: {
+        "auth-pattern": "url('assets/Sprinkle.svg')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
