@@ -5,6 +5,7 @@ import { getCourses } from "@/actions/get-courses";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { CoursesList } from "@/components/courses-list";
+import { Suspense } from "react";
 
 interface SearchPageProps {
   searchParams: {
@@ -35,7 +36,9 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
   return (
     <>
       <div className="px-6 pt-6 md:hidden md:mb-0 block">
-        <SearchInput />
+        <Suspense>
+          <SearchInput />
+        </Suspense>
       </div>
       <div className="p-6 space-y-4">
         <Categories items={categories} />
