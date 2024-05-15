@@ -4,7 +4,10 @@ const nextConfig = {
         domains: [
             "utfs.io"
         ]
-    }
+    },
+    experimental: {
+        missingSuspenseWithCSRBailout: false,
+      },    
 };
 
 export default nextConfig;
